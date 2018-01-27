@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 public enum DAGError: Error {
     case AcyclicInvariant
     case LinkNotFound
@@ -38,7 +39,7 @@ public class Node: NSObject {
     @objc var linkEntranti = NSPointerArray.weakObjects()
     @objc var links = [Node: Int]()
 
-    @objc func hasLink(from vertex: Node)  -> Bool {
+    @objc func hasLink(from vertex: Node) -> Bool {
         for v in links.keys {
             if v === vertex { return true }
             if v.hasLink(from: vertex) == true { return true }
@@ -55,10 +56,10 @@ public class Node: NSObject {
     }
 
     @objc func removeLink(to node: Node) throws {
-        try links.decrease(key: node)
         for (index, k) in node.linkEntranti.allObjects.enumerated() {
             if let k = k as? Node, k === self {
                 node.linkEntranti.removePointer(at: index)
+                try links.decrease(key: node)
                 return
             }
         }
@@ -90,4 +91,48 @@ public class Node: NSObject {
         return "\(typeName(self))(uuid: \(hash))"
     }
 }
+
+struct Edge<A: Node> {
+    unowned let parent: Node
+    var child: A?
+
+    init(_ parent: Node) {
+        self.parent = parent
+    }
+
+    init(_ parent: Node, child: A) {
+        self.parent = parent
+        self.child = child
+    }
+
+//    public static func <= (lhs: Edge<A>, rhs: A) throws -> Edge<A> {
+//        try lhs.parent.addLink(to: rhs)
+//        if let child = lhs.child {
+//            try lhs.parent.removeLink(to: child)
+//        }
+//        return Edge<A>.init(lhs.parent, child: rhs)
+//    }
+
+    mutating public func connect(rhs: A) throws {
+        try parent.addLink(to: rhs)
+        if let child = child {
+            try parent.removeLink(to: child)
+        }
+        child = rhs
+    }
+
+    public static func <= (lhs: inout Edge<A>, rhs: A) throws {
+        try lhs.parent.addLink(to: rhs)
+        if let child = lhs.child {
+            try lhs.parent.removeLink(to: child)
+        }
+        lhs.child = rhs
+    }
+
+    public static postfix func ^ (lhs: Edge<A>) -> A {
+        return lhs.child!
+    }
+}
+
+postfix operator ^
 

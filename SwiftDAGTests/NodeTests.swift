@@ -49,6 +49,21 @@ class NodeTests: XCTestCase {
         XCTAssert(v.topologicalOrder().count == 1)
     }
 
+    func testEdge() {
+        let a = EdgeTest()
+        let b = EdgeTest()
+        try? a.other.connect(rhs: b)
+        XCTAssert(a.other.child === b)
+        XCTAssert(a.label.child == nil)
+    }
+
+    func testEdgeOperators() {
+        let a = EdgeTest()
+        let b = EdgeTest()
+        try? a.other <= b
+        XCTAssert(a.other^ === b)
+    }
+
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

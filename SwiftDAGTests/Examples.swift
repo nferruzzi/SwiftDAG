@@ -27,12 +27,18 @@ class Label: View {
     var _text: Text?
 }
 
+class EdgeTest: Node {
+    lazy var other = Edge<EdgeTest>(self)
+    lazy var label = Edge<Label>(self)
+}
+
 class Parent: Node {
     var _children: Children?
     var _childrens: [Children]?
 
     func add(children: Children) {
         try? _childrens?.dag(self).append(children)
+//        _childrens?.dag(self)
     }
 }
 

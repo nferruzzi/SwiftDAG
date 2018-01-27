@@ -34,7 +34,7 @@ public class DaggableArray<Element: Node> {
     }
 }
 
-extension Array {
+extension Array where Element: Node {
     func dag<Element>(_ parent: Node) -> DaggableArray<Element> {
         return DaggableArray<Element>.init(parent: parent, array: self as! Array<Element>)
     }

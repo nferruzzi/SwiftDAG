@@ -8,6 +8,9 @@ extension Children {
 extension Color {
 }
 
+extension EdgeTest {
+}
+
 extension Label {
     var color: Color? {
         set {

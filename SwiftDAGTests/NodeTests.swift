@@ -21,6 +21,23 @@ class NodeTests: XCTestCase {
         super.tearDown()
     }
 
+    func testConnections() {
+        let v = View()
+        let c = View()
+
+        XCTAssert(v.links.count == 0)
+        XCTAssert(v.linkEntranti.count == 0)
+
+        v.children = c
+        XCTAssert(v.links.count == 1)
+        XCTAssert(v.linkEntranti.count == 0)
+        XCTAssert(c.linkEntranti.count == 1)
+
+        v.children = nil
+        XCTAssert(v.links.count == 0)
+        XCTAssert(c.linkEntranti.count == 0)
+    }
+
     func testExample() {
         let v = View()
         let l = Label()

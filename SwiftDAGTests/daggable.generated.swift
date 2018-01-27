@@ -18,7 +18,13 @@ extension Label {
                 return
             }
             if let temp = _color {
-                removeLink(from: temp)
+                do {
+                    try removeLink(to: temp)
+                } catch DAGError.LinkNotFound {
+                    fatalError("Label._color link not found")
+                } catch {
+                    fatalError("not possible")
+                }
             }
             if let temp = newValue {
                 do {
@@ -46,7 +52,13 @@ extension Label {
                 return
             }
             if let temp = _text {
-                removeLink(from: temp)
+                do {
+                    try removeLink(to: temp)
+                } catch DAGError.LinkNotFound {
+                    fatalError("Label._text link not found")
+                } catch {
+                    fatalError("not possible")
+                }
             }
             if let temp = newValue {
                 do {
@@ -77,7 +89,13 @@ extension Parent {
                 return
             }
             if let temp = _children {
-                removeLink(from: temp)
+                do {
+                    try removeLink(to: temp)
+                } catch DAGError.LinkNotFound {
+                    fatalError("Parent._children link not found")
+                } catch {
+                    fatalError("not possible")
+                }
             }
             if let temp = newValue {
                 do {
@@ -111,7 +129,13 @@ extension View {
                 return
             }
             if let temp = _children {
-                removeLink(from: temp)
+                do {
+                    try removeLink(to: temp)
+                } catch DAGError.LinkNotFound {
+                    fatalError("View._children link not found")
+                } catch {
+                    fatalError("not possible")
+                }
             }
             if let temp = newValue {
                 do {

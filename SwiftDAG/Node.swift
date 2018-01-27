@@ -10,51 +10,59 @@ import Foundation
 
 public enum DAGError: Error {
     case AcyclicInvariant
-    case WeakParentNotFound
+    case LinkNotFound
+    case ParentLinkNotFound
 }
 
-//protocol Daggable: Hashable {
-//    func addLink(to node: Any) throws
-//    func removeLink(from node: Any)
-//}
+private extension Dictionary where Key == Node, Value == Int {
+    mutating func increase(key: Key) {
+        let p = self[key, default: 0] + 1
+        self[key] = p
+    }
+
+    mutating func decrease(key: Key) throws {
+        let p = self[key, default: 0]
+        switch p {
+        case 0:
+            throw DAGError.LinkNotFound
+        case 1:
+            removeValue(forKey: key)
+        default:
+            self[key] = p - 1
+        }
+    }
+}
 
 public class Node: NSObject {
-//    private static var gids:Int = 0
-//    private var UUID:Int = {
-//        Node.gids += 1
-//        return Node.gids
-//    }()
 
-    @objc var linkUscenti: [Node] = []
     @objc var linkEntranti = NSPointerArray.weakObjects()
+    @objc var links = [Node: Int]()
 
     @objc func hasLink(from vertex: Node)  -> Bool {
-        for v in linkEntranti.allObjects {
-            if let v = v as? Node {
-                if v === vertex { return true }
-                if v.hasLink(from: vertex) == true { return true }
-            }
+        for v in links.keys {
+            if v === vertex { return true }
+            if v.hasLink(from: vertex) == true { return true }
         }
         return false
     }
 
     @objc func addLink(to node: Node) throws {
-        // do not allow cyclic references
         if node === self { throw DAGError.AcyclicInvariant }
         if hasLink(from: node) { throw DAGError.AcyclicInvariant }
-        linkUscenti.append(node)
+        links.increase(key: node)
         let w = Unmanaged.passUnretained(self).toOpaque()
         node.linkEntranti.addPointer(w)
     }
 
-    @objc func removeLink(from node: Node) {
-        guard let index = linkUscenti.index(of: node) else { return }
-        linkUscenti.remove(at: index)
-        let w = Unmanaged.passUnretained(self).toOpaque()
-        let eindex = node.linkEntranti.index(ofAccessibilityElement: w)
-        if eindex != NSNotFound {
-            node.linkEntranti.removePointer(at: eindex)
+    @objc func removeLink(to node: Node) throws {
+        try links.decrease(key: node)
+        for (index, k) in node.linkEntranti.allObjects.enumerated() {
+            if let k = k as? Node, k === self {
+                node.linkEntranti.removePointer(at: index)
+                return
+            }
         }
+        throw DAGError.ParentLinkNotFound
     }
 
     @objc func topologicalOrder() -> [Node] {
@@ -65,7 +73,7 @@ public class Node: NSObject {
     func depthFirst(visited:inout Set<Node>) -> [Node] {
         var nodes:[Node] = []
         visited.insert(self)
-        for v in linkUscenti {
+        for v in links.keys {
             if !visited.contains(v) {
                 nodes.append(contentsOf: v.depthFirst(visited: &visited))
             }
@@ -74,7 +82,7 @@ public class Node: NSObject {
         return nodes
     }
 
-    func typeName(_ some: Any) -> String {
+    private func typeName(_ some: Any) -> String {
         return (some is Any.Type) ? "\(some)" : "\(type(of: some))"
     }
 

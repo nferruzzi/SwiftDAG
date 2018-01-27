@@ -10,7 +10,7 @@ import Foundation
 
 public class DaggableArray<Element: Node> {
     private var array: Array<Element>
-    private weak var parent: Node?
+    private var parent: Node
 
     init(parent: Node, array: Array<Element>) {
         self.parent = parent
@@ -18,21 +18,18 @@ public class DaggableArray<Element: Node> {
     }
 
     public func append(_ newElement: Element) throws {
-        guard let parent = parent else { throw DAGError.WeakParentNotFound }
         try parent.addLink(to: newElement)
         array.append(newElement)
     }
 
     public func insert(_ newElement: Element, at i: Int) throws {
-        guard let parent = parent else { throw DAGError.WeakParentNotFound }
         try parent.addLink(to: newElement)
         array.insert(newElement, at: i)
     }
 
     public func remove(at position: Int) throws -> Element {
-        guard let parent = parent else { throw DAGError.WeakParentNotFound }
         let node = array.remove(at: position)
-        parent.removeLink(from: node)
+        try parent.removeLink(to: node)
         return node
     }
 }

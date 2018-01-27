@@ -10,7 +10,7 @@ import Foundation
 
 postfix operator ^
 
-struct Edge<Element: Node> {
+class Edge<Element: Node> {
     unowned let parent: Node
     var child: Element?
 
@@ -23,7 +23,7 @@ struct Edge<Element: Node> {
         self.child = child
     }
 
-    mutating public func connect(to rhs: Element) throws {
+    public func connect(to rhs: Element) throws {
         try parent.addLink(to: rhs)
         if let child = child {
             try parent.removeLink(to: child)
@@ -44,7 +44,7 @@ struct Edge<Element: Node> {
     }
 }
 
-struct EdgeArray<Element: Node> {
+class EdgeArray<Element: Node> {
     unowned let parent: Node
     private(set) var childs: Array<Element> = []
 
@@ -57,17 +57,17 @@ struct EdgeArray<Element: Node> {
         self.childs = childs
     }
 
-    mutating public func append(_ newElement: Element) throws {
+    public func append(_ newElement: Element) throws {
         try parent.addLink(to: newElement)
         childs.append(newElement)
     }
 
-    mutating public func insert(_ newElement: Element, at i: Int) throws {
+    public func insert(_ newElement: Element, at i: Int) throws {
         try parent.addLink(to: newElement)
         childs.insert(newElement, at: i)
     }
 
-    mutating public func remove(at position: Int) throws -> Element {
+    public func remove(at position: Int) throws -> Element {
         let node = childs.remove(at: position)
         try parent.removeLink(to: node)
         return node

@@ -30,6 +30,7 @@ class Label: View {
 class EdgeTest: Node {
     lazy var other = Edge<EdgeTest>(parent: self)
     lazy var label = Edge<Label>(parent: self)
+    lazy var array = Edge<EdgeArrayTest>(parent: self)
 }
 
 class EdgeArrayTest: Node {

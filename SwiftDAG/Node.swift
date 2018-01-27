@@ -40,7 +40,7 @@ public class Node: NSObject {
     @objc var links = [Node: Int]()
 
     @objc func hasLink(from vertex: Node) -> Bool {
-        for v in links.keys {
+        for case let v as Node in linkEntranti.allObjects {
             if v === vertex { return true }
             if v.hasLink(from: vertex) == true { return true }
         }

@@ -75,6 +75,55 @@ class NodeTests: XCTestCase {
         }
     }
 
+    func testEdgeArraySpam() {
+        let a = EdgeArrayTest()
+        let e = EdgeTest()
+        for c in 0..<10 {
+            try! a.others.append(e)
+            XCTAssertEqual(a.links.count, 1)
+            XCTAssertEqual(a.others.childs.count, c + 1)
+        }
+    }
+
+    func testLoop() {
+        let a = Node()
+        let b = Node()
+        try! a.addLink(to: b)
+        XCTAssertThrowsError(try b.addLink(to: a))
+    }
+
+    func testLoop2() {
+        let a = Node()
+        let b = Node()
+        let c = Node()
+        try! a.addLink(to: b)
+        try! b.addLink(to: c)
+        XCTAssertThrowsError(try c.addLink(to: a))
+    }
+
+    func testLoopArray() {
+        let a = EdgeArrayTest()
+        let b = EdgeTest()
+        try! a.others.append(b)
+        XCTAssertThrowsError(try b.array.connect(to: a))
+    }
+
+    func testLoopEdge() {
+        let a = EdgeTest()
+        let b = EdgeTest()
+        try! a.other.connect(to: b)
+        XCTAssertThrowsError(try b.other.connect(to: a))
+    }
+
+    func testLoopEdges() {
+        let a = EdgeTest()
+        let b = EdgeTest()
+        let c = EdgeArrayTest()
+        try! a.other.connect(to: b)
+        try! b.array.connect(to: c)
+        XCTAssertThrowsError(try c.others.append(a))
+    }
+
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

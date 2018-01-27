@@ -11,6 +11,13 @@
 		8A16B26B201A109800ED66D7 /* SwiftDAG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A16B261201A109700ED66D7 /* SwiftDAG.framework */; };
 		8A16B270201A109800ED66D7 /* SwiftDAGTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A16B26F201A109800ED66D7 /* SwiftDAGTests.swift */; };
 		8A16B272201A109800ED66D7 /* SwiftDAG.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A16B264201A109700ED66D7 /* SwiftDAG.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8A28CAD4201A16E6007ACA1A /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CAD2201A16E6007ACA1A /* NodeTests.swift */; };
+		8A28CAFC201C8386007ACA1A /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CAFB201C8386007ACA1A /* Node.swift */; };
+		8A28CAFD201C8386007ACA1A /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CAFB201C8386007ACA1A /* Node.swift */; };
+		8A28CAFF201C9E79007ACA1A /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CAFE201C9E79007ACA1A /* Examples.swift */; };
+		8A28CB01201CA2BF007ACA1A /* daggable.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CB00201CA2BF007ACA1A /* daggable.generated.swift */; };
+		8A28CB03201CBD37007ACA1A /* Array+DAG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CB02201CBD37007ACA1A /* Array+DAG.swift */; };
+		8A28CB04201CBD37007ACA1A /* Array+DAG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CB02201CBD37007ACA1A /* Array+DAG.swift */; };
 		AD176C364F8FA76B5972B953 /* Pods_SwiftDAG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85A4231CC2ECD0AC2E985BA4 /* Pods_SwiftDAG.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +44,12 @@
 		8A16B271201A109800ED66D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A28CACB201A132F007ACA1A /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		8A28CACC201A132F007ACA1A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8A28CAD2201A16E6007ACA1A /* NodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
+		8A28CAF5201C77BD007ACA1A /* daggable.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = daggable.stencil; sourceTree = "<group>"; };
+		8A28CAFB201C8386007ACA1A /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		8A28CAFE201C9E79007ACA1A /* Examples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examples.swift; sourceTree = "<group>"; };
+		8A28CB00201CA2BF007ACA1A /* daggable.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = daggable.generated.swift; sourceTree = "<group>"; };
+		8A28CB02201CBD37007ACA1A /* Array+DAG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+DAG.swift"; sourceTree = "<group>"; };
 		B97EF21EDC7E7A7B4CF61DFA /* Pods-SwiftDAGTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftDAGTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftDAGTests/Pods-SwiftDAGTests.release.xcconfig"; sourceTree = "<group>"; };
 		E046F665C8B79D02C94210C6 /* Pods-SwiftDAG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftDAG.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftDAG/Pods-SwiftDAG.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,8 +100,11 @@
 		8A16B263201A109700ED66D7 /* SwiftDAG */ = {
 			isa = PBXGroup;
 			children = (
+				8A28CAFB201C8386007ACA1A /* Node.swift */,
+				8A28CAF4201C75B4007ACA1A /* Templates */,
 				8A16B264201A109700ED66D7 /* SwiftDAG.h */,
 				8A16B265201A109700ED66D7 /* Info.plist */,
+				8A28CB02201CBD37007ACA1A /* Array+DAG.swift */,
 			);
 			path = SwiftDAG;
 			sourceTree = "<group>";
@@ -96,10 +112,21 @@
 		8A16B26E201A109800ED66D7 /* SwiftDAGTests */ = {
 			isa = PBXGroup;
 			children = (
+				8A28CB00201CA2BF007ACA1A /* daggable.generated.swift */,
 				8A16B26F201A109800ED66D7 /* SwiftDAGTests.swift */,
 				8A16B271201A109800ED66D7 /* Info.plist */,
+				8A28CAD2201A16E6007ACA1A /* NodeTests.swift */,
+				8A28CAFE201C9E79007ACA1A /* Examples.swift */,
 			);
 			path = SwiftDAGTests;
+			sourceTree = "<group>";
+		};
+		8A28CAF4201C75B4007ACA1A /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				8A28CAF5201C77BD007ACA1A /* daggable.stencil */,
+			);
+			path = Templates;
 			sourceTree = "<group>";
 		};
 		BA0FE198656311817736919E /* Frameworks */ = {
@@ -189,6 +216,7 @@
 				TargetAttributes = {
 					8A16B260201A109700ED66D7 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Manual;
 					};
 					8A16B269201A109800ED66D7 = {
@@ -321,6 +349,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A28CB03201CBD37007ACA1A /* Array+DAG.swift in Sources */,
+				8A28CAFC201C8386007ACA1A /* Node.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +358,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A28CAFF201C9E79007ACA1A /* Examples.swift in Sources */,
+				8A28CB01201CA2BF007ACA1A /* daggable.generated.swift in Sources */,
+				8A28CAFD201C8386007ACA1A /* Node.swift in Sources */,
 				8A16B270201A109800ED66D7 /* SwiftDAGTests.swift in Sources */,
+				8A28CB04201CBD37007ACA1A /* Array+DAG.swift in Sources */,
+				8A28CAD4201A16E6007ACA1A /* NodeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +410,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -394,8 +430,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
+				STRIP_STYLE = "non-global";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -435,6 +472,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -449,6 +487,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				STRIP_STYLE = "non-global";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -460,6 +499,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1D29ACCB19BCE6AC6FFF40DB /* Pods-SwiftDAG.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
@@ -474,6 +514,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -483,6 +524,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E046F665C8B79D02C94210C6 /* Pods-SwiftDAG.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
@@ -506,6 +548,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 65A61944A3B97F3A268421F6 /* Pods-SwiftDAGTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XBC8ZV2BGE;
 				INFOPLIST_FILE = SwiftDAGTests/Info.plist;
@@ -521,6 +564,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B97EF21EDC7E7A7B4CF61DFA /* Pods-SwiftDAGTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XBC8ZV2BGE;
 				INFOPLIST_FILE = SwiftDAGTests/Info.plist;

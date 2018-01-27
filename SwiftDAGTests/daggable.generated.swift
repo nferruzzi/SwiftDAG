@@ -8,6 +8,9 @@ extension Children {
 extension Color {
 }
 
+extension EdgeArrayTest {
+}
+
 extension EdgeTest {
 }
 

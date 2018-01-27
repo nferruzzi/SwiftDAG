@@ -28,16 +28,21 @@ class Label: View {
 }
 
 class EdgeTest: Node {
-    lazy var other = Edge<EdgeTest>(self)
-    lazy var label = Edge<Label>(self)
+    lazy var other = Edge<EdgeTest>(parent: self)
+    lazy var label = Edge<Label>(parent: self)
 }
+
+class EdgeArrayTest: Node {
+    lazy var others = EdgeArray<EdgeTest>(parent: self)
+}
+
 
 class Parent: Node {
     var _children: Children?
     var _childrens: [Children]?
 
     func add(children: Children) {
-        try? _childrens?.dag(self).append(children)
+//        try? _childrens?.dag(self).append(children)
 //        _childrens?.dag(self)
     }
 }

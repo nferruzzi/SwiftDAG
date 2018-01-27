@@ -52,7 +52,7 @@ class NodeTests: XCTestCase {
     func testEdge() {
         let a = EdgeTest()
         let b = EdgeTest()
-        try? a.other.connect(rhs: b)
+        try? a.other.connect(to: b)
         XCTAssert(a.other.child === b)
         XCTAssert(a.label.child == nil)
     }
@@ -62,6 +62,17 @@ class NodeTests: XCTestCase {
         let b = EdgeTest()
         try? a.other <= b
         XCTAssert(a.other^ === b)
+    }
+
+    func testEdgeArray() {
+        let a = EdgeArrayTest()
+        for c in 0..<10 {
+            let e = EdgeTest()
+            try? a.others.append(e)
+            XCTAssert(a.links.count == c + 1)
+            XCTAssert(a.others.childs.count == c + 1)
+            XCTAssert(a.others.childs[c] === e)
+        }
     }
 
     func testPerformanceExample() {

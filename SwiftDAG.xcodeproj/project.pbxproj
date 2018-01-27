@@ -16,8 +16,8 @@
 		8A28CAFD201C8386007ACA1A /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CAFB201C8386007ACA1A /* Node.swift */; };
 		8A28CAFF201C9E79007ACA1A /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CAFE201C9E79007ACA1A /* Examples.swift */; };
 		8A28CB01201CA2BF007ACA1A /* daggable.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CB00201CA2BF007ACA1A /* daggable.generated.swift */; };
-		8A28CB03201CBD37007ACA1A /* Array+DAG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CB02201CBD37007ACA1A /* Array+DAG.swift */; };
-		8A28CB04201CBD37007ACA1A /* Array+DAG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CB02201CBD37007ACA1A /* Array+DAG.swift */; };
+		8A28CB06201D2E5F007ACA1A /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CB05201D2E5F007ACA1A /* Edge.swift */; };
+		8A28CB07201D2E5F007ACA1A /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CB05201D2E5F007ACA1A /* Edge.swift */; };
 		AD176C364F8FA76B5972B953 /* Pods_SwiftDAG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85A4231CC2ECD0AC2E985BA4 /* Pods_SwiftDAG.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +49,7 @@
 		8A28CAFB201C8386007ACA1A /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		8A28CAFE201C9E79007ACA1A /* Examples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Examples.swift; sourceTree = "<group>"; };
 		8A28CB00201CA2BF007ACA1A /* daggable.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = daggable.generated.swift; sourceTree = "<group>"; };
-		8A28CB02201CBD37007ACA1A /* Array+DAG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+DAG.swift"; sourceTree = "<group>"; };
+		8A28CB05201D2E5F007ACA1A /* Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
 		B97EF21EDC7E7A7B4CF61DFA /* Pods-SwiftDAGTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftDAGTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftDAGTests/Pods-SwiftDAGTests.release.xcconfig"; sourceTree = "<group>"; };
 		E046F665C8B79D02C94210C6 /* Pods-SwiftDAG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftDAG.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftDAG/Pods-SwiftDAG.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,11 +100,11 @@
 		8A16B263201A109700ED66D7 /* SwiftDAG */ = {
 			isa = PBXGroup;
 			children = (
-				8A28CAFB201C8386007ACA1A /* Node.swift */,
 				8A28CAF4201C75B4007ACA1A /* Templates */,
+				8A28CAFB201C8386007ACA1A /* Node.swift */,
+				8A28CB05201D2E5F007ACA1A /* Edge.swift */,
 				8A16B264201A109700ED66D7 /* SwiftDAG.h */,
 				8A16B265201A109700ED66D7 /* Info.plist */,
-				8A28CB02201CBD37007ACA1A /* Array+DAG.swift */,
 			);
 			path = SwiftDAG;
 			sourceTree = "<group>";
@@ -349,7 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A28CB03201CBD37007ACA1A /* Array+DAG.swift in Sources */,
+				8A28CB06201D2E5F007ACA1A /* Edge.swift in Sources */,
 				8A28CAFC201C8386007ACA1A /* Node.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,9 +360,9 @@
 			files = (
 				8A28CAFF201C9E79007ACA1A /* Examples.swift in Sources */,
 				8A28CB01201CA2BF007ACA1A /* daggable.generated.swift in Sources */,
+				8A28CB07201D2E5F007ACA1A /* Edge.swift in Sources */,
 				8A28CAFD201C8386007ACA1A /* Node.swift in Sources */,
 				8A16B270201A109800ED66D7 /* SwiftDAGTests.swift in Sources */,
-				8A28CB04201CBD37007ACA1A /* Array+DAG.swift in Sources */,
 				8A28CAD4201A16E6007ACA1A /* NodeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

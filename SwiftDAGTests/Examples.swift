@@ -42,6 +42,16 @@ class EdgeDictionaryTest: Node {
     lazy var map = EdgeDictionary<Int, EdgeTest>(parent: self)
 }
 
+class UFrame: Node {
+    var size: CGRect?
+    var origin: CGPoint?
+}
+
+class UView: Node {
+    lazy var childrens = EdgeArray<UView>(parent: self)
+    lazy var frame = Edge<UFrame>(parent: self)
+    var backgroundColor = UIColor.black
+}
 
 class Parent: Node {
     var _children: Children?

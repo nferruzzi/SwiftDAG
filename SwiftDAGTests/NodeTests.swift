@@ -170,6 +170,13 @@ class NodeTests: XCTestCase {
         XCTAssertEqual(a.map.childs.count, 1)
     }
 
+    func testUView() {
+        let view = UView()
+        let frame = UFrame()
+        try? view.frame.connect(to: frame)
+        print(view.topologicalOrder())
+    }
+
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

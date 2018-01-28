@@ -31,10 +31,15 @@ class EdgeTest: Node {
     lazy var other = Edge<EdgeTest>(parent: self)
     lazy var label = Edge<Label>(parent: self)
     lazy var array = Edge<EdgeArrayTest>(parent: self)
+    lazy var dummy = Edge<Node>(parent: self)
 }
 
 class EdgeArrayTest: Node {
     lazy var others = EdgeArray<EdgeTest>(parent: self)
+}
+
+class EdgeDictionaryTest: Node {
+    lazy var map = EdgeDictionary<Int, EdgeTest>(parent: self)
 }
 
 

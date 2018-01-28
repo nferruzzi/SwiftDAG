@@ -11,6 +11,9 @@ extension Color {
 extension EdgeArrayTest {
 }
 
+extension EdgeDictionaryTest {
+}
+
 extension EdgeTest {
 }
 

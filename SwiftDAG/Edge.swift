@@ -74,4 +74,61 @@ class EdgeArray<Element: Node> {
     }
 }
 
+class EdgeDictionary<Key: Hashable, Value: Node> {
+    unowned let parent: Node
+    private(set) var childs: Dictionary<Key, Value> = [:]
 
+    init(parent: Node) {
+        self.parent = parent
+    }
+
+    init(parent: Node, childs: Dictionary<Key, Value>) {
+        self.parent = parent
+        self.childs = childs
+    }
+
+    public subscript(key: Key) -> Value? {
+        get {
+            return childs[key]
+        }
+
+        set {
+            if let ov = childs[key] {
+                try! parent.removeLink(to: ov)
+                childs.removeValue(forKey: key)
+            }
+            if let newValue = newValue {
+                try! parent.addLink(to: newValue)
+                childs[key] = newValue
+            }
+        }
+    }
+
+    public subscript(key: Key, default defaultValue: @autoclosure () -> Value) -> Value {
+        get {
+            if let ov = childs[key] {
+                try! parent.removeLink(to: ov)
+                childs.removeValue(forKey: key)
+            }
+            let nv = defaultValue()
+            try! parent.addLink(to: nv)
+            childs[key] = nv
+            return nv
+        }
+
+        set {
+            if let ov = childs[key] {
+                try! parent.removeLink(to: ov)
+                childs.removeValue(forKey: key)
+            }
+            try! parent.addLink(to: newValue)
+            childs[key] = newValue
+        }
+    }
+
+    public func removeValue(forKey key: Key) throws -> Value? {
+        guard let value = childs.removeValue(forKey: key) else { return nil }
+        try parent.removeLink(to: value)
+        return value
+    }
+}

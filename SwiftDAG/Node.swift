@@ -83,11 +83,11 @@ public class Node: NSObject {
         return nodes
     }
 
-    private func typeName(_ some: Any) -> String {
+    public func typeName(_ some: Any) -> String {
         return (some is Any.Type) ? "\(some)" : "\(type(of: some))"
     }
 
-    public override var debugDescription: String {
+    open override var debugDescription: String {
         return "\(typeName(self))(uuid: \(hash))"
     }
 }

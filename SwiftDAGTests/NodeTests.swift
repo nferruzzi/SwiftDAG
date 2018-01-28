@@ -26,16 +26,16 @@ class NodeTests: XCTestCase {
         let c = View()
 
         XCTAssert(v.links.count == 0)
-        XCTAssert(v.linkEntranti.count == 0)
+        XCTAssert(v.innerLinks.count == 0)
 
         v.children = c
         XCTAssert(v.links.count == 1)
-        XCTAssert(v.linkEntranti.count == 0)
-        XCTAssert(c.linkEntranti.count == 1)
+        XCTAssert(v.innerLinks.count == 0)
+        XCTAssert(c.innerLinks.count == 1)
 
         v.children = nil
         XCTAssert(v.links.count == 0)
-        XCTAssert(c.linkEntranti.count == 0)
+        XCTAssert(c.innerLinks.count == 0)
     }
 
     func testExample() {

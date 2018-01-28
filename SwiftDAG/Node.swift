@@ -36,11 +36,11 @@ private extension Dictionary where Key == Node, Value == Int {
 
 public class Node: NSObject {
 
-    @objc var linkEntranti = NSPointerArray.weakObjects()
+    @objc var innerLinks = NSPointerArray.weakObjects()
     @objc var links = [Node: Int]()
 
     @objc func hasLink(from vertex: Node) -> Bool {
-        for case let v as Node in linkEntranti.allObjects {
+        for case let v as Node in innerLinks.allObjects {
             if v === vertex { return true }
             if v.hasLink(from: vertex) == true { return true }
         }
@@ -52,13 +52,13 @@ public class Node: NSObject {
         if hasLink(from: node) { throw DAGError.AcyclicInvariant }
         links.increase(key: node)
         let w = Unmanaged.passUnretained(self).toOpaque()
-        node.linkEntranti.addPointer(w)
+        node.innerLinks.addPointer(w)
     }
 
     @objc func removeLink(to node: Node) throws {
-        for (index, k) in node.linkEntranti.allObjects.enumerated() {
+        for (index, k) in node.innerLinks.allObjects.enumerated() {
             if let k = k as? Node, k === self {
-                node.linkEntranti.removePointer(at: index)
+                node.innerLinks.removePointer(at: index)
                 try links.decrease(key: node)
                 return
             }

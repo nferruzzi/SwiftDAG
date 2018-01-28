@@ -1,0 +1,41 @@
+{% for type in types.inheriting.Node %}
+extension {{ type.name }} {
+{% for variable in type.variables|inherits:"Node" %}
+    var {{ variable.name|replace:"_","" }}: {{ variable.typeName }} {
+        set {
+            if {{ variable.name|replace:"_","" }} !== {{ variable.name }} {
+                fatalError("{{type.name}}.{{ variable.name }} has been modified directly")
+            }
+            if newValue === {{ variable.name }} {
+                return
+            }
+            if let temp = {{ variable.name }} {
+                do {
+                    try removeLink(to: temp)
+                } catch DAGError.LinkNotFound {
+                    fatalError("{{type.name}}.{{ variable.name }} link not found")
+                } catch {
+                    fatalError("not possible")
+                }
+            }
+            if let temp = newValue {
+                do {
+                    try addLink(to: temp)
+                } catch DAGError.AcyclicInvariant {
+                    fatalError("{{type.name}}.{{ variable.name }} closed loop detected")
+                } catch {
+                    fatalError("not possible")
+                }
+            }
+            {{ variable.name }} = newValue
+        }
+
+        get {
+            return {{ variable.name }}
+        }
+    }
+
+{% endfor %}
+}
+
+{% endfor %}
